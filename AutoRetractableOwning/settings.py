@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'main.apps.MainConfig',
 
-    'rest_framework'
+    'rest_framework',
 ]
 
 REST_FRAMEWORK = {
