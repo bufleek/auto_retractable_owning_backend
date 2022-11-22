@@ -7,8 +7,8 @@ from accounts.serializers import UserSerializer
 
 class SignupApiView(TokenObtainPairView):
     
-    ### perfoms extra validations not included in serializer
     def validate(self, data):
+        """perfoms extra validations not included in serializer"""
         errors = dict()
         password = data.get("password", None)
         conf_password = data.get("conf_password")

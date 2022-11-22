@@ -1,11 +1,17 @@
 from rest_framework import serializers
 
-from accounts.serializers import UserSerializer
-from main.models import Device
+from main.models import Device, Log
 
 
 class DeviceSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
+    serial_no = serializers.ReadOnlyField()
+
     class Meta:
-        fields = ["id", "user"]
+        exclude = ["user", "id", "created_at"]
         model = Device
+
+
+class LogSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = "__all__"
+        model = Log
