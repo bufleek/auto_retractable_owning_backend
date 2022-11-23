@@ -7,7 +7,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     serial_no = serializers.ReadOnlyField()
 
     class Meta:
-        exclude = ["user", "id", "created_at"]
+        exclude = ["user", "created_at"]
         model = Device
 
 

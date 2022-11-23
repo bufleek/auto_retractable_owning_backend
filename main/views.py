@@ -1,4 +1,5 @@
 from rest_framework import generics
+from rest_framework.permissions import AllowAny
 
 from main.models import Device, Log
 from main.serializers import DeviceSerializer, LogSerializer
@@ -17,10 +18,23 @@ class DeviceDetailApiView(generics.RetrieveUpdateAPIView):
     queryset = Device.objects.all()
     lookup_field = "serial_no"
 
+    def get_permissions(self):
+        #allow unauthenticated access for GET requests
+        print(self.request.method)
+        if(self.request.method.upper() == "GET"):
+            return [AllowAny()]
+        return super().get_permissions()
 
-class LogListApiView(generics.ListAPIView):
+
+class LogListApiView(generics.ListCreateAPIView):
     """ get a list of logs related to the current user """
     serializer_class = LogSerializer
+    
+    def get_permissions(self):
+        #allow unauthenticated access for POST requests
+        if(self.request.method.upper() == "POST"):
+            return [AllowAny()]
+        return super().get_permissions()
 
     def get_queryset(self):
         user = self.request.user
