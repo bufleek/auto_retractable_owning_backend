@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+from decouple import Csv, config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,12 +23,12 @@ from datetime import timedelta
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6g9hcuqs$*^a#3a-u@67mi9i_^o$s34+lijexevu5$d!yx6()s'
+SECRET_KEY = config('SECRET_KEY', default='django-insecure-6g9hcuqs$*^a#3a-u@67mi9i_^o$s34+lijexevu5$d!yx6()s', cast=str)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default="", cast=Csv())
 
 AUTH_USER_MODEL = 'accounts.User'
 
