@@ -17,13 +17,7 @@ class DeviceDetailApiView(generics.RetrieveUpdateAPIView):
     serializer_class = DeviceSerializer
     queryset = Device.objects.all()
     lookup_field = "serial_no"
-
-    def get_permissions(self):
-        #allow unauthenticated access for GET requests
-        print(self.request.method)
-        if(self.request.method.upper() == "GET"):
-            return [AllowAny()]
-        return super().get_permissions()
+    permission_classes = [AllowAny]
 
 
 class LogListApiView(generics.ListCreateAPIView):
