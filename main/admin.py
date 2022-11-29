@@ -8,7 +8,7 @@ class DeviceAdmin(admin.ModelAdmin):
     list_display = ["serial_no", "retraction_status", "user"]
 
 class LogsAdmin(admin.ModelAdmin):
-    list_display = ["device", "title", "message", "created_at"]
+    list_display = ["title", "message", "created_at"]
 
 admin.site.register(Device, DeviceAdmin)
 admin.site.register(Log, LogsAdmin)

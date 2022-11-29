@@ -6,7 +6,7 @@ from accounts.models import User
 
 class DeviceRetractionStatus(models.IntegerChoices):
     RETRACTED = 0
-    EXPANDED = 1
+    EXTENDED = 1
 
 class OnOffStatus(models.IntegerChoices):
     ON=1
